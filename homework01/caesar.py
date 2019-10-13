@@ -10,22 +10,19 @@ def encrypt_caesar(plaintext: str) -> str:
     ''
     """
     # PUT YOUR CODE HERE
-alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
-encrypt = input('Enter a clear massage: ')
-key = int(input('please enter a key(number from 1-25): '))
-
-encrypted = ""
-for letter in encrypt:
-    position = alphabet.find(letter)
-    newPosition = position + key
-    if letter in alphabet: 
-        encrypted = encrypted + alphabet[newPosition]
-    else:
-        encrypted = encrypted + letter
-print("Your cipher is: ", encrypted)
-    return ciphertext
-
-
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+    encrypt= input(massage)
+    key = 3
+    ciphertext = ""
+    for letter in encrypt:
+        position = alphabet.find(letter)
+        newPosition = position + key
+        if letter in alphabet: 
+            ciphertext = ciphertext + alphabet[newPosition]
+        else:
+            ciphertext = ciphertext + letter
+    print(ciphertext)
+    return ciphertext    
 def decrypt_caesar(ciphertext: str) -> str:
     """
     >>> decrypt_caesar("SBWKRQ")
@@ -38,17 +35,15 @@ def decrypt_caesar(ciphertext: str) -> str:
     ''
     """
     # PUT YOUR CODE HERE
-alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
-encrypt = input('Enter a clear massage: ')
-key = int(input('please enter a key(number from 1-25): '))
-encrypt = encrypt.lower()
-encrypted = ""
-for letter in encrypt:
-    position = alphabet.find(letter)
-    newPosition = position - key
-    if letter in alphabet: 
-        encrypted = encrypted + alphabet[newPosition]
-    else:
-        encrypted = encrypted + letter
-print("Your cipher is: ", encrypted)
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzp"
+    encrypt= input(massage)
+    key = '3'
+    plaintext = ""
+    for letter in encrypt:
+        position = alphabet.find(letter)
+        newPosition = position - key - 78
+        if letter in alphabet: 
+            plaintext = plaintext + alphabet[newPosition]
+        else:
+            plaintext = plaintext + letter
     return plaintext
