@@ -1,12 +1,13 @@
-def encrypt_vigenere(plaintext, keyword) -> str:
+def encrypt_vigenere(plaintext, keyword):
     """
-       >>> encrypt_vigenere("PYTHON", "A")
-       'PYTHON'
-       >>> encrypt_vigenere("python", "a")
-       'python'
-       >>> encrypt_vigenere("ATTACKATDAWN", "LEMON")
-       'LXFOPVEFRNHR'
-       """
+    Encrypts plaintext using a Vigenere cipher.
+    >>> encrypt_vigenere("PYTHON", "A")
+    'PYTHON'
+    >>> encrypt_vigenere("python", "a")
+    'python'
+    >>> encrypt_vigenere("ATTACKATDAWN", "LEMON")
+    'LXFOPVEFRNHR'
+    """
     ciphertext = ''
     i = 0
     for ch in plaintext:
@@ -29,17 +30,18 @@ def encrypt_vigenere(plaintext, keyword) -> str:
     return ciphertext
 
 
-def decrypt_vigenere(ciphertext, keyword) -> str:
+def decrypt_vigenere(ciphertext, keyword):
     """
-        >>> decrypt_vigenere("PYTHON", "A")
-        'PYTHON'
-        >>> decrypt_vigenere("python", "a")
-        'python'
-        >>> decrypt_vigenere("LXFOPVEFRNHR", "LEMON")
-        'ATTACKATDAWN'
-        """
+    Decrypts a ciphertext using a Vigenere cipher.
+    >>> decrypt_vigenere("PYTHON", "A")
+    'PYTHON'
+    >>> decrypt_vigenere("python", "a")
+    'python'
+    >>> decrypt_vigenere("LXFOPVEFRNHR", "LEMON")
+    'ATTACKATDAWN'
+    """
     plaintext = ''
-    i = 0;
+    i = 0
     for ch in ciphertext:
         if 'a' <= ch <= 'z' or 'A' <= ch <= 'Z':
             shift = ord(keyword[i % len(keyword)])
@@ -59,9 +61,3 @@ def decrypt_vigenere(ciphertext, keyword) -> str:
     return plaintext
 
 
-plaintext = str(input("Enter Your message: "))
-keyword = str(input("Enter Keywordd: "))
-
-ciphertext = encrypt_vigenere(plaintext, keyword)
-print("Cod: " + ciphertext)
-print("Not Cod: " + decrypt_vigenere(ciphertext, keyword))
