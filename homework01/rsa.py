@@ -1,5 +1,9 @@
-def is_prime(n: int) -> bool:
+import random
+
+
+def is_prime(n):
     """
+    Tests to see if a number is prime.
     >>> is_prime(2)
     True
     >>> is_prime(11)
@@ -7,7 +11,7 @@ def is_prime(n: int) -> bool:
     >>> is_prime(8)
     False
     """
-    # PUT YOUR CODE HERE
+
     if n == 2:
         return True
     if n % 2 == 0:
@@ -44,19 +48,24 @@ def generate_keypair(p: int, q: int):
     # Return public and private keypair
     # Public key is (e, n) and private key is (d, n)
     return ((e, n), (d, n))
-def gcd(a: int, b: int) -> int:
+def gcd(a, b):
     """
+    Euclid's algorithm for determining the greatest common divisor.
     >>> gcd(12, 15)
     3
     >>> gcd(3, 7)
     1
     """
+
     # PUT YOUR CODE HERE
     while b != 0:
         a, b = b, a % b
     return a
 def multiplicative_inverse(e: int, phi: int) -> int:
     """
+    Euclid's extended algorithm for finding the multiplicative
+    inverse of two numbers.
+    
     >>> multiplicative_inverse(7, 40)
     23
     """
