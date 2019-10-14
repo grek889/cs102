@@ -1,14 +1,15 @@
-def encrypt_caesar(plaintext, k = 3) -> str:
+def encrypt_caesar(plaintext: str) -> str:
     """
-        >>> encrypt_caesar("PYTHON")
-        'SBWKRQ'
-        >>> encrypt_caesar("python")
-        'sbwkrq'
-        >>> encrypt_caesar("Python3.6")
-        'Sbwkrq3.6'
-        >>> encrypt_caesar("")
-        ''
-        """
+    >>> encrypt_caesar("PYTHON")
+    'SBWKRQ'
+    >>> encrypt_caesar("python")
+    'sbwkrq'
+    >>> encrypt_caesar("Python3.6")
+    'Sbwkrq3.6'
+    >>> encrypt_caesar("")
+    ''
+    """
+    k = 3
     ciphertext = ''
     for ch in plaintext:
         if 'a' <= ch <= 'z' or 'A' <= ch <= 'Z':
@@ -22,7 +23,7 @@ def encrypt_caesar(plaintext, k = 3) -> str:
             ciphertext += ch
     return ciphertext
 
-def decrypt_caesar(ciphertext, k = 3) -> str:
+def decrypt_caesar(ciphertext: str) -> str:
     """
         >>> decrypt_caesar("SBWKRQ")
         'PYTHON'
@@ -33,6 +34,7 @@ def decrypt_caesar(ciphertext, k = 3) -> str:
         >>> decrypt_caesar("")
         ''
         """
+    k = 3
     plaintext = ''
     for ch in ciphertext:
         if 'a' <= ch <= 'z' or 'A' <= ch <= 'Z':
@@ -45,13 +47,3 @@ def decrypt_caesar(ciphertext, k = 3) -> str:
         else:
             plaintext += ch
     return plaintext
-
-
-plaintext = str(input(' Enter Your message: '))
-k = int(input('Enter you key: '))
-while k > 26:
-    k = int(input('Enter you key: '))
-
-ciphertext = encrypt_caesar(plaintext, k)
-print("Cod: " + ciphertext)
-print("Not Cod: " + decrypt_caesar(ciphertext, k))
