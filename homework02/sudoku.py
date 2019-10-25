@@ -1,11 +1,9 @@
-import random
 from typing import Tuple, List, Set, Optional
+import random
 
 
 def read_sudoku(filename: str) -> List[List[str]]:
     """ Прочитать Судоку из указанного файла """
-    with open(filename) as f:
-        content = f.read()
     digits = [c for c in open(filename).read() if c in '123456789.']
     grid = group(digits, 9)
     return grid
@@ -64,7 +62,6 @@ def get_col(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
 
 def get_block(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     """ Возвращает все значения из квадрата, в который попадает позиция pos
-
     >>> grid = read_sudoku('puzzle1.txt')
     >>> get_block(grid, (0, 1))
     ['5', '3', '.', '6', '.', '.', '.', '9', '8']
@@ -73,10 +70,12 @@ def get_block(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     >>> get_block(grid, (8, 8))
     ['2', '8', '.', '.', '.', '5', '.', '7', '9']
     """
-    row, col = pos
-    br = 3 * (row // 3)
-    bc = 3 * (col // 3)
-    return [grid[br + r][bc + c] for r in range(3) for c in range(3)]
+    block = []
+    block_pos = pos[0] // 3, pos[1] // 3
+    for i in range(3):
+        for j in range(3):
+            block.append(grid[block_pos[0] * 3 + i][block_pos[1] * 3 + j])
+    return block
 
 
 def find_empty_positions(grid: List[List[str]]) -> Optional[Tuple[int, int]]:
@@ -98,7 +97,6 @@ def find_empty_positions(grid: List[List[str]]) -> Optional[Tuple[int, int]]:
 
 def find_possible_values(grid: List[List[str]], pos: Tuple[int, int]) -> Set[str]:
     """ Вернуть множество возможных значения для указанной позиции
-
     >>> grid = read_sudoku('puzzle1.txt')
     >>> values = find_possible_values(grid, (0,2))
     >>> values == {'1', '2', '4'}
@@ -107,10 +105,14 @@ def find_possible_values(grid: List[List[str]], pos: Tuple[int, int]) -> Set[str
     >>> values == {'2', '5', '9'}
     True
     """
-    return set('123456789') - \
-        set(get_row(grid, pos)) - \
-        set(get_col(grid, pos)) - \
-        set(get_block(grid, pos))
+    values = {str(i + 1) for i in range(9)}
+    for n in get_row(grid, pos):
+        values.discard(n)
+    for n in get_col(grid, pos):
+        values.discard(n)
+    for n in get_block(grid, pos):
+        values.discard(n)
+    return values
 
 
 def solve(grid: List[List[str]]) -> Optional[List[List[str]]]:
