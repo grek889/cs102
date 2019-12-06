@@ -2,11 +2,11 @@ import datetime
 import requests
 from bs4 import BeautifulSoup
 import telebot
-from config import DOMAIN
+import config
 
 
-bot = telebot.TeleBot('809458576:AAGWdbBqryUxEqAFra7r64s4W3DlY005uzk')
-telebot.apihelper.proxy = {'https': 'https://141.125.82.106:80'}
+bot = telebot.TeleBot(config.token)
+telebot.apihelper.proxy = {'https': 'https://51.158.119.88:8811'}
 weekdays = [
     'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday',
     'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday',
@@ -47,7 +47,7 @@ def get_page(group, week=''):
         else:
             w = ''
         url = '{domain}/{group}/{week}raspisanie_zanyatiy_{group}.htm'.format(
-            domain=DOMAIN,
+            domain=config.domain,
             week=w,
             group=group)
         response = requests.get(url)
